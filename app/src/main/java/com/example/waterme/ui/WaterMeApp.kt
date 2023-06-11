@@ -77,6 +77,7 @@ fun PlantListContent(
 ) {
     var selectedPlant by rememberSaveable { mutableStateOf(plants[0]) }
     var showReminderDialog by rememberSaveable { mutableStateOf(false) }
+
     LazyColumn(
         contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_medium)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium)),
@@ -94,6 +95,7 @@ fun PlantListContent(
             )
         }
     }
+
     if (showReminderDialog) {
         ReminderDialogContent(
             onDialogDismiss = { showReminderDialog = false },
@@ -104,7 +106,11 @@ fun PlantListContent(
 }
 
 @Composable
-fun PlantListItem(plant: Plant, onItemSelect: (Plant) -> Unit, modifier: Modifier = Modifier) {
+fun PlantListItem(
+    plant: Plant,
+    onItemSelect: (Plant) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Card(modifier = modifier
         .clickable { onItemSelect(plant) }
     ) {
